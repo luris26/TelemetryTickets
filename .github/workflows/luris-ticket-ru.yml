@@ -12,7 +12,8 @@ jobs:
 
       - name: Test
         run: |
-          docker run --rm -v $(pwd):/app -w/app mcr.microsoft.com/dotnet/sdk:8.0 
+          docker run --rm -v $(pwd):/app -w/app mcr.microsoft.com/dotnet/sdk:8.0 ./TicketsRUs.Tests/
+          # cd ./TicketsRUs.Tests/
           dotnet test
 
       - name: "Run docker compose"
