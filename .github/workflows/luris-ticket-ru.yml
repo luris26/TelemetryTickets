@@ -23,7 +23,7 @@ jobs:
         if: always()
         with:
           github-token: ${{ github.token }}
-          webhook-uri: ${{ secrets.CARLOS_WEBHOOK }}.
+          webhook-uri: ${{ secrets.TEAMLURIS}}.
 
 
       # - name: Test Integration Test
