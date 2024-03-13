@@ -46,7 +46,7 @@ public class ScanTests
         QRScanner scanner = new(mockService.Object, mockCamera.Object);
 
 
-        //ACT
+        //ACT in the test
         await scanner.DoScanAsync(0);
 
         //ASSERT

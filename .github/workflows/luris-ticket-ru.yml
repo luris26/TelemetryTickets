@@ -9,10 +9,18 @@ jobs:
           rm -rf ./TelemetryTickets
       - name: "Clonning the repo"
         run: git clone https://${{secrets.CI_LURIS}}@github.com/luris26/TelemetryTickets.git
+
+      - name: Test
+        run: |
+          cd ./TicketsRUs.Tests/
+          dotnet test
       - name: "Run docker compose"
         run: |
           cd ./TelemetryTickets/LurisDockercompose
           docker compose up --build -d
+
+
+
 #Do something
 ################################################Im Done#############################################################################
 
