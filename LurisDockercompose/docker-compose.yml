@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER:
+        lurisdatabasehomework
+      POSTGRES_PASSWORD:
+        P@ssword
+    volumes:
+      - ../20240216.05.07.07:/docker-entrypoint-initdb.d/filegeneratedinthevolume.sql
+  
+  server:
+    build: ..
+    ports:
+      - 2607:8080
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "db=server=db;user id=lurisdatabasehomework;database=postgres;password=P@ssword;"
+    healthcheck:
+      test: wget --tries=1 http://localhost/healthCheck || exit 1
+      interval: 3s
+      retries: 2
+      start_period: 5s
+      timeout: 15s
+      #####
