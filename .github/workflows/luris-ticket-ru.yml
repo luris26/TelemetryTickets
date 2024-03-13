@@ -9,10 +9,17 @@ jobs:
           rm -rf ./TelemetryTickets
       - name: "Clonning the repo"
         run: git clone https://${{secrets.CI_LURIS}}@github.com/luris26/TelemetryTickets.git
+        
+##I need to add this to made a commit
 
-      - name: Test
+      - name: Test Unit
         run: | 
           cd ./TelemetryTickets/TicketsRUs.Tests   
+          dotnet test 
+
+      - name: Test Integration Test
+        run: | 
+          cd ./TelemetryTickets/TicketsRus.IntegrationTest  
           dotnet test       
 
       # - name: Linting
