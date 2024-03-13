@@ -25,7 +25,7 @@ public class ScanTests
         Ticket wrongTicket = new Ticket()
         {
             Id = 0,
-            EventId = 0,
+            EventId = 1,
             Scanned = false,
             Identifier = "123456789"
         };
