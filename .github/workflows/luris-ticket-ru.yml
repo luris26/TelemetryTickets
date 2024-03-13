@@ -9,17 +9,14 @@ jobs:
           rm -rf ./TelemetryTickets
       - name: "Clonning the repo"
         run: git clone https://${{secrets.CI_LURIS}}@github.com/luris26/TelemetryTickets.git
-        
-
       - name: Test Unit
         run: | 
           # docker run --rm --network="container:dbcontainer" -v "$(pwd):/app" -w /app/elemetryTickets -e DOTNET_CLI_HOME="/tmp/dotnet" --user $(id -u):$(id -g) mcr.microsoft.com/dotnet/sdk:8.0 dotnet test
           cd ./TelemetryTickets/TicketsRUs.Tests   
           dotnet test 
-#XD   
+          
       - uses: actions/checkout@v2
-
-      
+    
       - name: Teams Notification
         uses: dchourasia/ms-teams-notification@1.0
         if: always()
