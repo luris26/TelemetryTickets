@@ -12,11 +12,27 @@ jobs:
         
 ##I need to add this to made a commit
 
+      
+
       - name: Test Unit
         run: | 
-          docker run --rm --network="container:dbcontainer" -v "$(pwd):/app" -w /app/elemetryTickets -e DOTNET_CLI_HOME="/tmp/dotnet" --user $(id -u):$(id -g) mcr.microsoft.com/dotnet/sdk:8.0 dotnet test
-          # cd ./TelemetryTickets/TicketsRUs.Tests   
-          # dotnet test 
+          # docker run --rm --network="container:dbcontainer" -v "$(pwd):/app" -w /app/elemetryTickets -e DOTNET_CLI_HOME="/tmp/dotnet" --user $(id -u):$(id -g) mcr.microsoft.com/dotnet/sdk:8.0 dotnet test
+          cd ./TelemetryTickets/TicketsRUs.Tests   
+          dotnet test 
+
+
+      - uses: actions/checkout@master
+
+      - name: Microsoft Teams Notification
+        uses: skitionek/notify-microsoft-teams@master
+        if: always()
+        with:
+          webhook_url: ${{ secrets.TEAMLURIS }}
+          needs: ${{ toJson(needs) }}
+          job: ${{ toJson(job) }}
+          steps: ${{ toJson(steps) }}
+          dry_run: True
+        
 
       # - name: Test Integration Test
       #   run: | 
