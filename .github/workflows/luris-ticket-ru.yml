@@ -6,13 +6,13 @@ jobs:
     steps:
       - name: "do something to remove"
         run: |
-          rm -rf ./TelemetryTickets rs
+          rm -rf ./TelemetryTickets
       - name: "Clonning the repo"
         run: git clone https://${{secrets.CI_LURIS}}@github.com/luris26/TelemetryTickets.git
 
       - name: Test
         run: | 
-          cd ./TicketsRUs.Tests
+          cd ./TelemetryTickets/TicketsRUs.Tests
           dotnet test
 
       - name: "Run docker compose"
