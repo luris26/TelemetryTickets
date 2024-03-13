@@ -16,14 +16,14 @@ jobs:
           # docker run --rm --network="container:dbcontainer" -v "$(pwd):/app" -w /app/elemetryTickets -e DOTNET_CLI_HOME="/tmp/dotnet" --user $(id -u):$(id -g) mcr.microsoft.com/dotnet/sdk:8.0 dotnet test
           cd ./TelemetryTickets/TicketsRUs.Tests   
           dotnet test 
-#XD
-      - name: "Teams Channel"
-        uses: dchourasia/ms-teams-notification@1.0
-        if: always()
+#XD   
+
+      - name: Microsoft Teams Notification
+        uses: skitionek/notify-microsoft-teams@master
+        if: failure()
         with:
-            github-token: ${{ github.token }}
-            webhook-uri: ${{ secrets.TEAMLURIS }}
-        
+          webhook_url: ${{ secrets.TEAMLURIS}}
+
 
       # - name: Test Integration Test
       #   run: | 
