@@ -21,7 +21,9 @@ public static class QRCodeToolkit
         byte[] result;
         using (MemoryStream stream = new MemoryStream())
         {
+#pragma warning disable CA1416 // Validate platform compatibility
             qr.Save(stream, ImageFormat.Png);
+#pragma warning restore CA1416 // Validate platform compatibility
             result = stream.ToArray();
         }
 

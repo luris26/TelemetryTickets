@@ -12,11 +12,13 @@ jobs:
 
       - name: Test
         run: | 
-          cd ./TelemetryTickets/TicketsRUs.Tests          
-          docker run --rm -v "$(pwd):/app" -w /app/TicketsRUs.Tests -e DOTNET_CLI_HOME="/tmp/dotnet" --user $(id -u):$(id -g) mcr.microsoft.com/dotnet/sdk:8.0 dotnet test
+          cd ./TelemetryTickets/TicketsRUs.Tests   
+          dotnet test       
 
-      # - name: Linting
-      #   run: 
+      - name: Linting
+        run: |
+          cd ./TelemetryTickets/TicketsRUs.Tests 
+          dotnet format --verify -no -changes --severity
 
       - name: "Run docker compose"
         run: |
