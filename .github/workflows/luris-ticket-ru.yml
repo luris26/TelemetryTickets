@@ -12,7 +12,7 @@ jobs:
 
       - name: Test
         run: | 
-          cd ../..
+          cd ../
           docker run --rm -v $(pwd):/app -w /app/TicketsRUs.Tests mcr.microsoft.com/dotnet/sdk:8.0
           dotnet test
 
