@@ -8,10 +8,12 @@ jobs:
         run: |
           rm -rf ./ticketsrus-garion-luris
       - name: "Clonning the repo"
-        run: git clone https://${{secrets.LURIS_SECRET_HOMEWORKS}}@github.com/SnowSE/ticketsrus-garion-luris.git
+        run: git clone https://${{secrets.CI_LURIS}}@github.com/SnowSE/ticketsrus-garion-luris.git
       - name: "Run docker compose"
         run: |
           cd ./ticketsrus-garion-luris/LurisDockercompose
           docker compose up --build -d
-
+#Do something
 ################################################Im Done#############################################################################
+
+
