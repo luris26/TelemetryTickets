@@ -12,8 +12,9 @@ jobs:
 
       - name: Test
         run: |
-          cd ./TicketsRUs.Tests/
+          docker run -it --rm -v $(pwd):/app -w/app mcr.microsoft.com/dotnet/sdk:8.0 
           dotnet test
+
       - name: "Run docker compose"
         run: |
           cd ./TelemetryTickets/LurisDockercompose
