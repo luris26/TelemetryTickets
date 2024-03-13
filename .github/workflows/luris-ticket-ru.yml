@@ -25,7 +25,7 @@ jobs:
           github-token: ${{ github.token }}
           webhook-uri: ${{ secrets.TEAMLURIS}}.
 
-
+###
       # - name: Test Integration Test
       #   run: | 
       #     cd ./TelemetryTickets/TicketsRus.IntegrationTest  
