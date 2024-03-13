@@ -19,10 +19,11 @@ jobs:
 #XD   
 
       - name: Microsoft Teams Notification
-        uses: skitionek/notify-microsoft-teams@master
-        if: failure()
+        uses: dchourasia/ms-teams-notification@1.0
+        if: always()
         with:
-          webhook_url: ${{ secrets.TEAMLURIS}}
+          github-token: ${{ github.token }}
+          webhook-uri: ${{ secrets.CARLOS_WEBHOOK }}.
 
 
       # - name: Test Integration Test
