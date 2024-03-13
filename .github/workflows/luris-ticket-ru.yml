@@ -12,7 +12,7 @@ jobs:
 
       - name: Test
         run: |
-          docker run -it --rm -v $(pwd):/app -w/app mcr.microsoft.com/dotnet/sdk:8.0 
+          docker run --rm -v $(pwd):/app -w/app mcr.microsoft.com/dotnet/sdk:8.0 
           dotnet test
 
       - name: "Run docker compose"
