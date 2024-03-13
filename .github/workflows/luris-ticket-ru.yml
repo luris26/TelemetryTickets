@@ -21,17 +21,14 @@ jobs:
           dotnet test 
 
 
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
 
-      - name: Microsoft Teams Notification
-        uses: skitionek/notify-microsoft-teams@master
+      - name: "Notifies Teams Channel"
+        uses: dchourasia/ms-teams-notification@1.0
         if: always()
         with:
-          webhook_url: ${{ secrets.TEAMLURIS }}
-          needs: ${{ toJson(needs) }}
-          job: ${{ toJson(job) }}
-          steps: ${{ toJson(steps) }}
-          dry_run: True
+            github-token: ${{ github.token }}
+            webhook-uri: ${{ secrets.TEAMLURIS }}
         
 
       # - name: Test Integration Test
