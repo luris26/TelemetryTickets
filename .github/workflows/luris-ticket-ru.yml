@@ -2,7 +2,7 @@ name: LurisRunner
 on: [push]
 jobs:
   deploypipeline:
-    runs-on: lurisrunner
+    runs-on: labelTicket
     steps:
       - name: "do something to remove"
         run: |
