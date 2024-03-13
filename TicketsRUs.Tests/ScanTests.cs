@@ -9,12 +9,7 @@ namespace TicketsRUs.Tests;
 
 public class ScanTests
 {
-    // [Fact]
-    // public void EnvironmentSetUp()
-    // {
-    //     Assert.True(true);
-    // }
-
+    //This was a previous test
     [Fact]
     public async void UnsuccessfulScan_DoesNotUpdateDatabasce()
     {
