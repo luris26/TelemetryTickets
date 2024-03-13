@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace TicketsRus.IntegrationTest
 {
-    public class UnitTest1 :IClassFixture<TicketWebFactory>
+    public class UnitTest1 : IClassFixture<TicketWebFactory>
     {
         public UnitTest1(TicketWebFactory factory)
         {
