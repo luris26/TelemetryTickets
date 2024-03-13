@@ -1,4 +1,4 @@
-name: LurisRunner
+name: CI_LurisRunner
 on: [push]
 jobs:
   deploypipeline:
@@ -11,7 +11,7 @@ jobs:
         run: git clone https://${{secrets.CI_LURIS}}@github.com/luris26/TelemetryTickets.git
       - name: "Run docker compose"
         run: |
-          cd ./ticketsrus-garion-luris/LurisDockercompose
+          cd ./TelemetryTickets/LurisDockercompose
           docker compose up --build -d
 #Do something
 ################################################Im Done#############################################################################
