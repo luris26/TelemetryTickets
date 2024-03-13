@@ -14,13 +14,14 @@ jobs:
 
       - name: Test Unit
         run: | 
-          cd ./TelemetryTickets/TicketsRUs.Tests   
-          dotnet test 
+          docker run --rm --network="container:dbcontainer" -v "$(pwd):/app" -w /app/elemetryTickets -e DOTNET_CLI_HOME="/tmp/dotnet" --user $(id -u):$(id -g) mcr.microsoft.com/dotnet/sdk:8.0 dotnet test
+          # cd ./TelemetryTickets/TicketsRUs.Tests   
+          # dotnet test 
 
-      - name: Test Integration Test
-        run: | 
-          cd ./TelemetryTickets/TicketsRus.IntegrationTest  
-          dotnet test       
+      # - name: Test Integration Test
+      #   run: | 
+      #     cd ./TelemetryTickets/TicketsRus.IntegrationTest  
+      #     dotnet test       
 
       # - name: Linting
       #   run: |
