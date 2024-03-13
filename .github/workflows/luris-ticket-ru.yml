@@ -11,7 +11,8 @@ jobs:
         run: git clone https://${{secrets.CI_LURIS}}@github.com/luris26/TelemetryTickets.git
 
       - name: Test
-        run: |
+        run: | 
+          cd ./TelemetryTickets/
           docker run --rm -v $(pwd):/app -w /app/TicketsRUs.Tests mcr.microsoft.com/dotnet/sdk:8.0
           dotnet test
 
