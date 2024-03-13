@@ -6,7 +6,7 @@ jobs:
     steps:
       - name: "do something to remove"
         run: |
-          rm -rf ./ticketsrus-garion-luris
+          rm -rf ./TelemetryTickets
       - name: "Clonning the repo"
         run: git clone https://${{secrets.CI_LURIS}}@github.com/luris26/TelemetryTickets.git
       - name: "Run docker compose"
