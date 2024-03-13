@@ -10,9 +10,6 @@ jobs:
       - name: "Clonning the repo"
         run: git clone https://${{secrets.CI_LURIS}}@github.com/luris26/TelemetryTickets.git
         
-##I need to add this to made a commit
-
-      
 
       - name: Test Unit
         run: | 
@@ -20,10 +17,7 @@ jobs:
           cd ./TelemetryTickets/TicketsRUs.Tests   
           dotnet test 
 #XD
-
-      - uses: actions/checkout@v2
-
-      - name: "Notifies Teams Channel"
+      - name: "Teams Channel"
         uses: dchourasia/ms-teams-notification@1.0
         if: always()
         with:
