@@ -17,8 +17,8 @@ jobs:
           cd ./TelemetryTickets/TicketsRUs.Tests   
           dotnet test 
 #XD   
-
-      - name: Microsoft Teams Notification
+      - uses: actions/checkout@v2
+      - name: Teams Notification
         uses: dchourasia/ms-teams-notification@1.0
         if: always()
         with:
