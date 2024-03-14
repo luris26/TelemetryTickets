@@ -30,20 +30,17 @@ jobs:
           cd ./TelemetryTickets/LurisDockercompose
           docker compose up --build -d
 
-      - uses: actions/checkout@v2
+  if_failure:
+          name: Only if failure
+          runs-on: ubuntu-18.04
+          steps:
+            - uses: actions/checkout@master
+            - name: Microsoft Teams Notification
+              uses: skitionek/notify-microsoft-teams@master
+              if: failure()
+              with:
+                webhook_url: ${{ secrets.MSTEAMS_WEBHOOK }}
+          
 
-      - name: Teams Notification
-        uses: dchourasia/ms-teams-notification@1.0
-        if: always()
-        with:
-          github-token: ${{ github.token }}
-          webhook-uri: ${{ secrets.LURISWEBHOOK}}.
-    
-##
-      
-
-
-#Do something
-################################################Im Done#############################################################################
 
 
