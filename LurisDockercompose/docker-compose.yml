@@ -101,7 +101,7 @@ services:
       - 2346:8859 #prometheus exporter metrics
       - 4317:4317 #OTLP gRPC receiver
       - 7890:55679 #zpages
-      - 6789:13133 #Health Check
+      - 8790:13133 #Health Check
     networks:
       otel:
 
