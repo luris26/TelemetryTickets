@@ -23,9 +23,6 @@ jobs:
           cd ./TelemetryTickets/TicketsRUs.Tests 
           dotnet format --verify-no-changes --severity warn
 
-      - name: Docker
-        run: cd ./TelemetryTickets/LurisDockercompose
-          docker compose up
 
 
 
