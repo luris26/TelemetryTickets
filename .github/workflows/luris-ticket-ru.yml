@@ -22,21 +22,21 @@ jobs:
         run: |
           cd ./TelemetryTickets/TicketsRUs.Tests 
           dotnet format --verify-no-changes --severity warn
-      - name: Warning Errors
-        run: |
-          cd ./TelemetryTickets/TicketsRUs.Tests
-      - name: "Run docker compose"
-        run: |
-          cd ./TelemetryTickets/LurisDockercompose
-          docker compose up --build -d
+      # - name: Warning Errors
+      #   run: |
+      #     cd ./TelemetryTickets/TicketsRUs.Tests
+      # - name: "Run docker compose"
+      #   run: |
+      #     cd ./TelemetryTickets/LurisDockercompose
+      #     docker compose up --build -d
 
-      - uses: actions/checkout@v2
-      - name: Microsoft Teams Notification
-        uses: dchourasia/ms-teams-notification@1.0
-        if: failure()
-        with:
-          github-token: ${{ github.token }}
-          webhook_url: ${{ secrets.LURISWEBHOOK}}
+      # - uses: actions/checkout@v2
+      # - name: Microsoft Teams Notification
+      #   uses: dchourasia/ms-teams-notification@1.0
+      #   if: failure()
+      #   with:
+      #     github-token: ${{ github.token }}
+      #     webhook_url: ${{ secrets.LURISWEBHOOK}}
           
 
 
