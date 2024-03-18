@@ -3,6 +3,7 @@ version: '3'
 services:
   db:
     image: postgres
+    container_name: luris_server
     environment:
       POSTGRES_USER:
         lurisdatabasehomework
@@ -22,7 +23,7 @@ services:
   server:
     build: ..
     ports:
-      - 2607:8080
+      - 6789:8080
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "db=server=db;user id=lurisdatabasehomework;database=postgres;password=P@ssword;"
