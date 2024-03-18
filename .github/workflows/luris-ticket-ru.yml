@@ -23,14 +23,19 @@ jobs:
           cd ./TelemetryTickets/TicketsRUs.Tests 
           dotnet format --verify-no-changes --severity warn
 
-  run-on-github-actions:
-    runs-on: [ labelTicket ]
-    needs: [ deploypipeline]
-    steps:
       - name: "Turn On Containers"
         run: |
           cd ./TelemetryTickets/LurisDockercompose
           docker compose up --build -d
+
+  # run-on-github-actions:
+  #   runs-on: [ labelTicket ]
+  #   needs: [ deploypipeline]
+  #   steps:
+  #     - name: "Turn On Containers"
+  #       run: |
+  #         cd ./TelemetryTickets/LurisDockercompose
+  #         docker compose up --build -d
 
 
 
