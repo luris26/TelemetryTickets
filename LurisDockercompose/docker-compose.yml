@@ -54,7 +54,7 @@ services:
   prometheus:
     # https://github.com/prometheus/prometheus/releases
     image: prom/prometheus:v2.43.0
-    container_name: prometheus
+    container_name: lurisPrometheus
     hostname: prometheus
     restart: unless-stopped
     ports:
