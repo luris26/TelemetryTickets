@@ -117,7 +117,7 @@ services:
     image: openzipkin/zipkin
     container_name: luris_zipkin
     ports:
-      - 9411:9411
+      - 2607:9411
     restart: always
     networks:
       otel:
