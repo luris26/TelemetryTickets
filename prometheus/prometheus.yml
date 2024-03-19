@@ -19,12 +19,15 @@ scrape_configs:
     target_label: instance
   - target_label: __address__
     replacement: blackbox:9115
+
 - job_name: "Metrics-from-blazor"
   scrape_interval: 5s
   static_configs:
-    - target: ["luris_server"]
+    - target: ["luris_server:8080"]
+
+
 - job_name: Prometheus
   scrape_interval: 5s
   static_config:
     - targets:
-      - prometheus:9090
+      - ['otel-collector:2609']

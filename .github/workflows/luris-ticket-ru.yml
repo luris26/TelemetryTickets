@@ -4,6 +4,8 @@ jobs:
   deploypipeline:
     runs-on: labelTicket
     steps:
+      - uses: actions/checkout@v4
+      
       - name: "do something to remove"
         run: |
           rm -rf ./TelemetryTickets
@@ -26,6 +28,12 @@ jobs:
       - name: "Turn On Containers"
         run: |
           cd ./TelemetryTickets/LurisDockercompose
+          docker compose up --build -d
+
+      - name: deploy
+        run: |
+          cd ./TelemetryTickets/LurisDockercompose
+          docker compose down 
           docker compose up --build -d
 ##
   # run-on-github-actions:
