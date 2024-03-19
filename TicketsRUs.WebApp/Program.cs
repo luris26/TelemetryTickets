@@ -83,7 +83,7 @@ app.MapGet("/healthCheck", () =>
 app.UseSwagger();
 app.UseSwaggerUI();
 app.MapControllers();
-
+//
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
