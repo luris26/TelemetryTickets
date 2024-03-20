@@ -61,14 +61,20 @@ builder.Services.AddOpenTelemetry()
         )
     );
 
-
-using ILoggerFactory factory = LoggerFactory.Create(builder =>
-{
-    builder.AddOpenTelemetry(logging =>
-    {
-        logging.AddOtlpExporter();
-    });
-});
+builder.Logging.AddOpenTelemetry(logs => 
+    logs
+        .AddConsoleExporter()
+        .AddOtlpExporter(o =>
+        {
+            o.Endpoint = new Uri("http://otel-collector:4317/");
+        }));
+// using ILoggerFactory factory = LoggerFactory.Create(builder =>
+// {
+//     builder.AddOpenTelemetry(logging =>
+//     {
+//         logging.AddOtlpExporter();
+//     });
+// });
 
 var app = builder.Build();
 
