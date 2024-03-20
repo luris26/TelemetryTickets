@@ -47,7 +47,7 @@ builder.Services.AddOpenTelemetry()
     .WithMetrics(metrics =>
          metrics
         .AddAspNetCoreInstrumentation()
-        .AddMeter(Meters.myhomeworkmeter.Name)
+        .AddMeter("Meters.myhomeworkmeter.Name")
         .AddConsoleExporter()
         .AddOtlpExporter(o =>
         {
