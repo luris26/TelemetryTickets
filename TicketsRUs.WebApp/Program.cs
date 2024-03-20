@@ -49,14 +49,13 @@ builder.Services.AddOpenTelemetry()
         .AddAspNetCoreInstrumentation()
         .AddMeter("Meters.myhomeworkmeter.Name")
         .AddConsoleExporter()
+        .AddPrometheusExporter()
         .AddOtlpExporter(o =>
         {
             o.Endpoint = new Uri("http://otel-collector:4317/");
         }
         )
     );
-
-
 
 var app = builder.Build();
 
@@ -68,6 +67,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
 app.MapGet("/healthCheck", () =>
 {
     if (DateTime.Now.Second % 10 < 5)
@@ -78,11 +78,12 @@ app.MapGet("/healthCheck", () =>
     return "unhealthy";
 });
 
+//app.ApplicaUseOpenTelemetryPrometheusScrapingEndpoint();
 // Swagger Components
 app.UseSwagger();
 app.UseSwaggerUI();
 app.MapControllers();
-
+//
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
