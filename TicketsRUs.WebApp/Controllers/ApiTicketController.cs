@@ -29,6 +29,7 @@ public class ApiTicketController : ControllerBase
     [HttpGet("event/{id}")]
     public async Task<AvailableEvent> GetAvailableEvent(int id)
     {
+        //_logger.LogDebug("View product with id {}", id);
         return await _service.GetAvailableEvent(id);
     }
 

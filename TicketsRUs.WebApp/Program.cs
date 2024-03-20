@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
+using Microsoft.Extensions.Logging;
 
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -14,7 +15,6 @@ using OpenTelemetry.Metrics;
 using System.Diagnostics.Metrics;
 
 var builder = WebApplication.CreateBuilder(args);
-
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
@@ -22,6 +22,7 @@ builder.Services.AddRazorComponents()
 builder.Services.AddControllers();
 builder.Services.AddSingleton<ITicketService, ApiTicketService>();
 builder.Services.AddSingleton<IEmailService, EmailService>();
+builder.Services.AddSingleton<ExampleHandler>();
 
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
@@ -31,6 +32,9 @@ builder.Services.AddDbContextFactory<PostgresContext>(options => options.UseNpgs
 
 
 const string serviceName = "luris";
+
+// builder.Logging.AddOpenTelemetry(logging => logging.AddOtlpExporter());
+// builder.Services.AddLogging(builder => builder.AddConsole()); // may have a bug here
 
 builder.Services.AddOpenTelemetry()
     .ConfigureResource(resource => resource.AddService(serviceName))
@@ -57,6 +61,15 @@ builder.Services.AddOpenTelemetry()
         )
     );
 
+
+using ILoggerFactory factory = LoggerFactory.Create(builder =>
+{
+    builder.AddOpenTelemetry(logging =>
+    {
+        logging.AddOtlpExporter();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -66,6 +79,10 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+
+var handler = app.Services.GetRequiredService<ExampleHandler>();
+app.MapGet("/log", handler.HandleRequest);
 
 
 app.MapGet("/healthCheck", () =>
