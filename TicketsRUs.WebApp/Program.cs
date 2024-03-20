@@ -68,13 +68,14 @@ builder.Logging.AddOpenTelemetry(logs =>
         {
             o.Endpoint = new Uri("http://otel-collector:4317/");
         }));
-// using ILoggerFactory factory = LoggerFactory.Create(builder =>
-// {
-//     builder.AddOpenTelemetry(logging =>
-//     {
-//         logging.AddOtlpExporter();
-//     });
-// });
+
+using ILoggerFactory factory = LoggerFactory.Create(builder =>
+{
+    builder.AddOpenTelemetry(logging =>
+    {
+        logging.AddOtlpExporter();
+    });
+});
 
 var app = builder.Build();
 
@@ -88,7 +89,7 @@ if (!app.Environment.IsDevelopment())
 
 
 var handler = app.Services.GetRequiredService<ExampleHandler>();
-app.MapGet("/log", handler.HandleRequest);
+app.MapGet("/log", ()=>handler.HandleRequest());
 
 
 app.MapGet("/healthCheck", () =>
