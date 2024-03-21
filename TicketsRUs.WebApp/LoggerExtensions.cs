@@ -15,7 +15,7 @@ public partial class ExampleHandler(ILogger<ExampleHandler> logger)
     [LoggerMessage(LogLevel.Warning, "ExampleHandler.HandleRequest02 was called with {description}")]
     public static partial void LogHandleRequest2(ILogger logger, string description);
 
-    [LoggerMessage(LogLevel.Debug, "ExampleHandler.HandleRequest03 was called with {description}")]
+    [LoggerMessage(LogLevel.Error, "ExampleHandler.HandleRequest03 was called with {description}")]
     public static partial void LogHandleRequest3(ILogger logger, string description);
 }
 
