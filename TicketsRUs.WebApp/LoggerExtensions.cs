@@ -4,7 +4,7 @@ public partial class ExampleHandler(ILogger<ExampleHandler> logger)
     {
         LogHandleRequest(logger);
         LogHandleRequest2(logger, "number 3");
-        LogHandleRequest3(logger, "Number 3")
+        LogHandleRequest3(logger, "Number 3");
         logger.LogInformation("Luris was here!");
         return "Im here";
     }
