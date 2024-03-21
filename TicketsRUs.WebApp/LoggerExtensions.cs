@@ -3,8 +3,8 @@ public partial class ExampleHandler(ILogger<ExampleHandler> logger)
     public string HandleRequest()
     {
         LogHandleRequest(logger);
-        LogHandleRequest2(logger, "number 3");
-        LogHandleRequest3(logger, "Number 3");
+        LogHandleRequest2(logger, "number 2");
+        LogHandleRequest3(logger, "number 3");
         logger.LogInformation("Luris was here!");
         return "Im here";
     }
