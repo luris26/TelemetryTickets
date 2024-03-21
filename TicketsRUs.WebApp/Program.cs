@@ -92,6 +92,8 @@ var handler = app.Services.GetRequiredService<ExampleHandler>();
 app.MapGet("/log", ()=>handler.HandleRequest());
 app.MapGet("/log2", ()=>handler.HandleRequest());
 app.MapGet("/log3", ()=>handler.HandleRequest());
+app.MapGet("/log4", ()=>handler.HandleRequest());
+app.MapGet("/log5", ()=>handler.HandleRequest());
 
 app.MapGet("/healthCheck", () =>
 {
