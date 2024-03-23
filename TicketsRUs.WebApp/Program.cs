@@ -2,16 +2,12 @@ using TicketsRUs.ClassLib.Data;
 using TicketsRUs.ClassLib.Services;
 using TicketsRUs.WebApp.Components;
 using TicketsRUs.WebApp.Services;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
-using Microsoft.Extensions.Logging;
-
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
 using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
+using  Microsoft.AspNetCore.Builder;
 using System.Diagnostics.Metrics;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -51,7 +47,8 @@ builder.Services.AddOpenTelemetry()
     .WithMetrics(metrics =>
          metrics
         .AddAspNetCoreInstrumentation()
-        .AddMeter("Meters.myhomeworkmeter.Name")
+        .AddMeter(Meters.myServiceName)
+        .AddMeter(Meters.histogramService)
         .AddConsoleExporter()
         .AddPrometheusExporter()
         .AddOtlpExporter(o =>
@@ -108,8 +105,7 @@ app.MapGet("/healthCheck", () =>
 
     return "unhealthy";
 });
-
-//app.ApplicaUseOpenTelemetryPrometheusScrapingEndpoint();
+app.UseOpenTelemetryPrometheusScrapingEndpoint();
 // Swagger Components
 app.UseSwagger();
 app.UseSwaggerUI();

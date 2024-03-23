@@ -37,7 +37,6 @@ services:
     networks:
       - otel
   
-
   black-box:
   # https://github.com/prometheus/blackbox_exporter/releases
     image: prom/blackbox-exporter:v0.23.0

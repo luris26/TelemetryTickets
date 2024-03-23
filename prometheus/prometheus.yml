@@ -4,6 +4,7 @@ scrape_configs:
   static_configs:
   - targets:
     - prometheus:9090
+
 - job_name: blackbox
   metrics_path: /probe
   scrape_interval: 5s
@@ -11,7 +12,7 @@ scrape_configs:
     module: [http_2xx] 
   static_configs:
   - targets:
-    - http://server:2607/healthcheck
+    - http://luris_server:2607/healthcheck
   relabel_configs:
   - source_labels: [__address__]
     target_label: __param_target
@@ -23,11 +24,8 @@ scrape_configs:
 - job_name: "Metrics-from-blazor"
   scrape_interval: 5s
   static_configs:
-    - target: ["luris_server:8080"]
+    - targets: ["luris_server:8080"]
 
 
-- job_name: Prometheus
-  scrape_interval: 5s
-  static_config:
-    - targets:
-      - ['otel-collector:2609']
+
+
