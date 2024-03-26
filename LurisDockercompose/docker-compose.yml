@@ -123,6 +123,7 @@ services:
     networks:
       otel:
   
+  #Reverse proxy and normal proxy     server ngnix and internet we are using 
   proxy:
     image: nginx
     container_name: luris_proxy
