@@ -10,7 +10,7 @@ public static class Meters{
     public static Counter<int> quantity = myhomeworkmeter.CreateCounter<int>("counterLuris");
 
     public static string histogramService = "Histogram";
-
+//Hola xd
     public static Meter histogram = new Meter(histogramService, "2.0.7");
 
 
