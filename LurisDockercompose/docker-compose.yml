@@ -153,6 +153,7 @@ services:
     ports:
       - 5963:443
       # - 80:80 #optional
+      #######################
     networks:
       otel:
 
