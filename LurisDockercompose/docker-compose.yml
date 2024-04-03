@@ -123,16 +123,36 @@ services:
     networks:
       otel:
   
-  #Reverse proxy and normal proxy     server ngnix and internet we are using 
-  proxy:
-    image: nginx
-    container_name: luris_proxy
-    ports:
-      - 5489:80
+  # #Reverse proxy and normal proxy     server ngnix and internet we are using 
+  # proxy:
+  #   image: nginx
+  #   container_name: luris_proxy
+  #   ports:
+  #     - 5489:80
+  #   volumes:
+  #     - ./nginx-default.conf:/etc/nginx/conf.d/default.conf
+  #   networks:
+  #     otel:
+
+  swag:
+    image: lscr.io/linuxserver/swag
+    container_name: swag
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Denver
+      - URL=telemetry-demo-grafana-luris.duckdns.org
+      - VALIDATION=duckdns
+      - DUCKDNSTOKEN= 13e3b5d2-5dd3-4980-bd7c-4472df22d1a9 
+      - STAGING=true 
     volumes:
+      - swag:/confg
       - ./nginx-default.conf:/etc/nginx/conf.d/default.conf
-    networks:
-      otel:
+    ports:
+      - 5963:443
+      - 80:80 #optional
 
 networks:
   otel:
@@ -141,3 +161,4 @@ volumes:
   loki:
   prometheus:
   tempo:
+  swag:
