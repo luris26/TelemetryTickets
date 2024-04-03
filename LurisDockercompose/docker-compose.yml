@@ -136,7 +136,7 @@ services:
 
   swag:
     image: lscr.io/linuxserver/swag
-    container_name: swag
+    container_name: luris_swag
     cap_add:
       - NET_ADMIN
     environment:
@@ -145,14 +145,16 @@ services:
       - TZ=America/Denver
       - URL=telemetry-demo-grafana-luris.duckdns.org
       - VALIDATION=duckdns
-      - DUCKDNSTOKEN= 13e3b5d2-5dd3-4980-bd7c-4472df22d1a9 
+      - DUCKDNSTOKEN=13e3b5d2-5dd3-4980-bd7c-4472df22d1a9
       - STAGING=true 
     volumes:
-      - swag:/confg
+      - luris_swag:/confg
       - ./nginx-default.conf:/etc/nginx/conf.d/default.conf
     ports:
       - 5963:443
-      - 80:80 #optional
+      # - 80:80 #optional
+    networks:
+      otel:
 
 networks:
   otel:
