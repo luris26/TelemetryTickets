@@ -38,7 +38,7 @@ spec:
         - name: POSTGRES_PASSWORD
           value: luris-password
         - name: POSTGRES_DB
-          value: lurisdb_dockercompose
+          value: lurisdb_
         volumeMounts:
         - name: postgresstorage
           mountPath: /var/lib/postgresql/data
@@ -49,8 +49,8 @@ spec:
         persistentVolumeClaim:
           claimName: blazor-web-db-pvc
       - name: init-script
-        # configMap:
-        #   name: blazor-web-postgres-init
+        configMap:
+          name: blazor-web-postgres-init
 ---
 apiVersion: v1
 kind: Service

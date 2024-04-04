@@ -42,6 +42,8 @@ jobs:
           docker build -t 144.17.92.12:5000/luris/blazor-web:1 .
           docker push 144.17.92.12:5000/luris/blazor-web:1 
 
+
+          kubectl -n luris create configmap blazor-web-postgres-init --from-file=init.sql
           kubectl apply -f Kube/
 
 
