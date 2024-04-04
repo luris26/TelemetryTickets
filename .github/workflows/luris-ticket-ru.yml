@@ -39,7 +39,7 @@ jobs:
       - name: deploy-kube
         run: |
           docker build -t 144.17.92.12:5000/luris/blazor-web:1 .
-          docker push -t 144.17.92.12:5000/luris/blazor-web:1 .
+          docker push -t 144.17.92.12:5000/luris/blazor-web:1 
 
           kubectl apply -f kube/
 
