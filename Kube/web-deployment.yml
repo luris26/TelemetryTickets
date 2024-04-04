@@ -20,3 +20,6 @@ spec:
         image: 144.17.92.12:5000/luris/blazor-web:1
         ports:
         - containerPort: 8080
+        env:
+        - name: CONNECTIONSTRING
+          value: Server=blazor-web-db-service;password=luris-password;user id=luris-user;database=lurisdb_;
