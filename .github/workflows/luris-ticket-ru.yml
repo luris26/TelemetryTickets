@@ -38,7 +38,7 @@ jobs:
 
       - name: deploy-kube
         run: |
-          cd TelemetryTickets
+          cd ./TelemetryTickets
           docker build -t 144.17.92.12:5000/luris/blazor-web:1 .
           docker push 144.17.92.12:5000/luris/blazor-web:1 
 
