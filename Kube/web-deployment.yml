@@ -21,5 +21,5 @@ spec:
         ports:
         - containerPort: 8080
         env:
-        - name: CONNECTIONSTRING
+        - name: db
           value: Server=blazor-web-db-service;password=luris-password;user id=luris-user;database=lurisdb_;
