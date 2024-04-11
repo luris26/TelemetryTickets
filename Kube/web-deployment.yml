@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: blazor-web
-        image: 144.17.92.12:5000/luris/blazor-web:1
+        image: 144.17.92.12:5000/luris/blazor-web:2
         ports:
         - containerPort: 8080
         env:
