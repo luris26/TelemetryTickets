@@ -10,7 +10,6 @@ datasources:
   jsonData:
     timeInterval: 10s
   basicAuth: false
-  isDefault: true
   version: 1
   editable: false
 
