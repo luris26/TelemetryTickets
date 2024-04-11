@@ -1,35 +1,35 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  namespace: luris
-  name: blazor-web-deployment
-  labels:
-    app: blazor-web
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: blazor-web
-  template:
-    metadata:
-      labels:
-        app: blazor-web
-    spec:
-      containers:
-      - name: blazor-web
-        image: otel/opentelemetry-collector-contrib:0.75.0
-        ports:
-        - containerPort: 4317
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   namespace: luris
+#   name: blazor-web-deployment
+#   labels:
+#     app: blazor-web
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: blazor-web
+#   template:
+#     metadata:
+#       labels:
+#         app: blazor-web
+#     spec:
+#       containers:
+#       - name: blazor-web
+#         image: otel/opentelemetry-collector-contrib:0.75.0
+#         ports:
+#         - containerPort: 4317
         
-        volumeMounts:
-          - name: otel-config-volume
-              mountPath: /etc/otel-collector-config.yaml
-              subPath: otel-collector-config.yaml
-        # env:
-        # - name: db
-        #   value: Server=blazor-web-db-service;password=luris-password;user id=luris-user;database=lurisdb_;
-      volumes:
-        - name: otel-config-volume
-          configMap:
-            name: otel-config
+#         volumeMounts:
+#           - name: otel-config-volume
+#               mountPath: /etc/otel-collector-config.yaml
+#               subPath: otel-collector-config.yaml
+#         # env:
+#         # - name: db
+#         #   value: Server=blazor-web-db-service;password=luris-password;user id=luris-user;database=lurisdb_;
+#       volumes:
+#         - name: otel-config-volume
+#           configMap:
+#             name: otel-config
 
