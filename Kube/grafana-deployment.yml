@@ -19,7 +19,7 @@ spec:
       - name: grafana
         image: grafana/grafana
         ports:
-        - containerPort: 4317
+        - containerPort: 3000
         
         env:
         - name: GF_SECURITY_ADMIN_USER
@@ -28,8 +28,8 @@ spec:
           value: grafana
         volumeMounts:
           - name: datasources
-              mountPath: /etc/grafana/provisioning/datasources/datasource.yml
-              subPath: grafana-datasource.yml
+            mountPath: /etc/grafana/provisioning/datasources/datasource.yml
+            subPath: grafana-datasource.yml
       volumes:
         - name: datasources
           configMap:
