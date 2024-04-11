@@ -65,26 +65,26 @@ services:
 #     networks:
 #       otel:
 
-  grafana:
-    # https://github.com/grafana/grafana/releases
-    image: grafana/grafana:9.4.7
-    container_name: luris_grafana
-    environment:
-      - GF_AUTH_ANONYMOUS_ENABLED=true
-      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
-      - GF_AUTH_DISABLE_LOGIN_FORM=true
-    volumes:
-      #- #grafana-data:/var/lib/grafana/ksjkd
-      - ../grafana/provisioning:/etc/grafana/provisioning
-    restart: unless-stopped
-    user: root
-    ports:
-      - "2610:3000"
-    depends_on:
-      - prometheus
-      - loki
-    networks:
-      otel:
+  # grafana:
+  #   # https://github.com/grafana/grafana/releases
+  #   image: grafana/grafana:9.4.7
+  #   container_name: luris_grafana
+  #   environment:
+  #     - GF_AUTH_ANONYMOUS_ENABLED=true
+  #     - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+  #     - GF_AUTH_DISABLE_LOGIN_FORM=true
+  #   volumes:
+  #     #- #grafana-data:/var/lib/grafana/ksjkd
+  #     - ../grafana/provisioning:/etc/grafana/provisioning
+  #   restart: unless-stopped
+  #   user: root
+  #   ports:
+  #     - "2610:3000"
+  #   depends_on:
+  #     - prometheus
+  #     - loki
+  #   networks:
+  #     otel:
 
 #   otel-collector:
 #   # https://github.com/open-telemetry/opentelemetry-collector-contrib/releases
