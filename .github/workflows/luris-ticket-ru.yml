@@ -47,7 +47,7 @@ jobs:
           # kubectl -n luris delete configmap otel-collector-config || true
           # kubectl -n luris create configmap otel-collector-config --from-file=init.sql
           kubectl -n luris delete configmap grafana-datasource-config || true
-          kubectl -n luris create configmap grafana-datasource-config --from-file=datasource-deployment.yml
+          kubectl -n luris create configmap grafana-datasource-config --from-file=grafana-datasource-config.yml
           cd ..
           kubectl apply -f Kube/
 ##################################################################################################
