@@ -66,6 +66,14 @@ builder.Logging.AddOpenTelemetry(logs =>
             o.Endpoint = new Uri("http://otel-collector:4317/");
         }));
 
+// builder.Logging.AddOpenTelemetry(logs => 
+//     logs
+//         .AddConsoleExporter()
+//         .AddOtlpExporter(o =>
+//         {
+//             o.Endpoint = new Uri("http://otel-collector-service:4317/");
+//         })); esto puede que se pero la verdad es que no tengo ni idea de que este funcionando tenes que ver el video
+
 using ILoggerFactory factory = LoggerFactory.Create(builder =>
 {
     builder.AddOpenTelemetry(logging =>

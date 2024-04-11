@@ -43,6 +43,12 @@ jobs:
           docker push 144.17.92.12:5000/luris/blazor-web:1 
 
           # kubectl -n luris create configmap blazor-web-postgres-init --from-file=init.sql
+          cd kube-configs
+          kubectl -n luris delete configmap otel-collector-config || true
+          kubectl -n luris create configmap otel-collector-config --from-file=init.sql
+          kubectl -n luris delete configmap grafana-datasource-config || true
+          kubectl -n luris create configmap grafana-datasource-config --from-file=datasource-deployment.yml
+          cd ..
           kubectl apply -f Kube/
 ##################################################################################################
 

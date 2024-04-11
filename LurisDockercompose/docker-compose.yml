@@ -17,8 +17,7 @@ services:
       timeout: 10s
       retries: 5
       start_period: 30s
-    networks:
-      otel:
+
   
   server:
     build: ..
@@ -34,38 +33,37 @@ services:
       retries: 2
       start_period: 5s
       timeout: 15s
-    networks:
-      - otel
-  
-  black-box:
-  # https://github.com/prometheus/blackbox_exporter/releases
-    image: prom/blackbox-exporter:v0.23.0
-    container_name: luris_blackbox
-    restart: unless-stopped
-    ports: 
-    - "2608:9115"
-    volumes:
-        - ../blackbox/blackbox.yml:/etc/blackbox/blackbox.yml
-    command: --config.file=/etc/blackbox/blackbox.yml
-    depends_on:
-      - server
-    networks:
-      otel:
 
-  prometheus:
-    # https://github.com/prometheus/prometheus/releases
-    image: prom/prometheus:v2.43.0
-    container_name: luris_Prometheus
-    hostname: prometheus
-    restart: unless-stopped
-    ports:
-     - "2609:9090"
-    volumes:
-      - ../prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-    depends_on:
-      - black-box
-    networks:
-      otel:
+  
+#   black-box:
+#   # https://github.com/prometheus/blackbox_exporter/releases
+#     image: prom/blackbox-exporter:v0.23.0
+#     container_name: luris_blackbox
+#     restart: unless-stopped
+#     ports: 
+#     - "2608:9115"
+#     volumes:
+#         - ../blackbox/blackbox.yml:/etc/blackbox/blackbox.yml
+#     command: --config.file=/etc/blackbox/blackbox.yml
+#     depends_on:
+#       - server
+#     networks:
+#       otel:
+
+#   prometheus:
+#     # https://github.com/prometheus/prometheus/releases
+#     image: prom/prometheus:v2.43.0
+#     container_name: luris_Prometheus
+#     hostname: prometheus
+#     restart: unless-stopped
+#     ports:
+#      - "2609:9090"
+#     volumes:
+#       - ../prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+#     depends_on:
+#       - black-box
+#     networks:
+#       otel:
 
   grafana:
     # https://github.com/grafana/grafana/releases
@@ -88,80 +86,80 @@ services:
     networks:
       otel:
 
-  otel-collector:
-  # https://github.com/open-telemetry/opentelemetry-collector-contrib/releases
-    container_name: luris_otel
-    hostname: my-otel-collector
-    image: otel/opentelemetry-collector-contrib:0.75.0
-    command: ["--config=/etc/otel-collector-config.yaml"]
-    volumes:
-      - ../otel/otel.yml:/etc/otel-collector-config.yaml
+#   otel-collector:
+#   # https://github.com/open-telemetry/opentelemetry-collector-contrib/releases
+#     container_name: luris_otel
+#     hostname: my-otel-collector
+#     image: otel/opentelemetry-collector-contrib:0.75.0
+#     command: ["--config=/etc/otel-collector-config.yaml"]
+#     volumes:
+#       - ../otel/otel.yml:/etc/otel-collector-config.yaml
 
-    ports:
-      - 2355:8888 #prometheus metrics
-      - 2346:8859 #prometheus exporter metrics
-      - 2345:4317 #OTLP gRPC receiver
-      - 7890:55679 #zpages
-      - 8790:13133 #Health Check
-    networks:
-      otel:
-#############3
-  loki:
-    image: grafana/loki:2.8.0
-    container_name: luris_loki
-    command: -config.file=/etc/loki/local-config.yaml
-    ports:
-      - 3874:3100
-    networks:
-      otel:
+#     ports:
+#       - 2355:8888 #prometheus metrics
+#       - 2346:8859 #prometheus exporter metrics
+#       - 2345:4317 #OTLP gRPC receiver
+#       - 7890:55679 #zpages
+#       - 8790:13133 #Health Check
+#     networks:
+#       otel:
+# #############3
+#   loki:
+#     image: grafana/loki:2.8.0
+#     container_name: luris_loki
+#     command: -config.file=/etc/loki/local-config.yaml
+#     ports:
+#       - 3874:3100
+#     networks:
+#       otel:
 
-  zipkin:
-    image: openzipkin/zipkin
-    container_name: luris_zipkin
-    ports:
-      - 2356:9411
-    networks:
-      otel:
+#   zipkin:
+#     image: openzipkin/zipkin
+#     container_name: luris_zipkin
+#     ports:
+#       - 2356:9411
+#     networks:
+#       otel:
   
-  # #Reverse proxy and normal proxy     server ngnix and internet we are using 
-  # proxy:
-  #   image: nginx
-  #   container_name: luris_proxy
-  #   ports:
-  #     - 5489:80
-  #   volumes:
-  #     - ./nginx-default.conf:/etc/nginx/conf.d/default.conf
-  #   networks:
-  #     otel:
+#   # #Reverse proxy and normal proxy     server ngnix and internet we are using 
+#   # proxy:
+#   #   image: nginx
+#   #   container_name: luris_proxy
+#   #   ports:
+#   #     - 5489:80
+#   #   volumes:
+#   #     - ./nginx-default.conf:/etc/nginx/conf.d/default.conf
+#   #   networks:
+#   #     otel:
 
-  swag:
-    image: lscr.io/linuxserver/swag
-    container_name: luris_swag
-    cap_add:
-      - NET_ADMIN
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=America/Denver
-      - URL=telemetry-demo-grafana-luris.duckdns.org
-      - VALIDATION=duckdns
-      - DUCKDNSTOKEN=13e3b5d2-5dd3-4980-bd7c-4472df22d1a9
-      - STAGING=true 
-    volumes:
-      - luris_swag:/confg
-      - ./nginx-default.conf:/config/nginx/site-confs/default.conf
-    ports:
-      - 5963:443
-      # - 80:80 #optional
-      #######################
-    networks:
-      otel:
+#   swag:
+#     image: lscr.io/linuxserver/swag
+#     container_name: luris_swag
+#     cap_add:
+#       - NET_ADMIN
+#     environment:
+#       - PUID=1000
+#       - PGID=1000
+#       - TZ=America/Denver
+#       - URL=telemetry-demo-grafana-luris.duckdns.org
+#       - VALIDATION=duckdns
+#       - DUCKDNSTOKEN=13e3b5d2-5dd3-4980-bd7c-4472df22d1a9
+#       - STAGING=true 
+#     volumes:
+#       - luris_swag:/confg
+#       - ./nginx-default.conf:/config/nginx/site-confs/default.conf
+#     ports:
+#       - 5963:443
+#       # - 80:80 #optional
+#       #######################
+#     networks:
+#       otel:
 
-networks:
-  otel:
+# networks:
+#   otel:
 
-volumes:
-  loki:
-  prometheus:
-  tempo:
-  luris_swag:
+# volumes:
+#   loki:
+#   prometheus:
+#   tempo:
+#   luris_swag:
