@@ -1,0 +1,13 @@
+name: backup databse
+on:
+ - workflow_dispatch
+jobs:
+    backup:
+     runs-on: self-hosted
+     steps:
+        - name: backup
+          run: |
+            CONTAINER_NAME=$(kubectl -n luris get pods --no-headers -o custom-columns=":metadata.name" | grep "blazor-web-db-deployment")
+            kubectl -n luris exec -t  blazor-web-db-deployment-ff75f55cc-f9t6h -- \
+              pg_dumpall -c -U luris-user \
+              > /home/luris/dump.sql
