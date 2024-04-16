@@ -39,8 +39,8 @@ jobs:
       - name: deploy-kube
         run: |
           cd ./TelemetryTickets
-          docker build -t 144.17.92.12:5000/luris/blazor-web:2 .
-          docker push 144.17.92.12:5000/luris/blazor-web:2 
+          docker build -t 144.17.92.12:5000/luris/blazor-web:$GITHUB_RUN_ID .
+          docker push 144.17.92.12:5000/luris/blazor-web:$GITHUB_RUN_ID 
 
           #kubectl -n luris create configmap blazor-web-postgres-init --from-file=init.sql
           cd kube-configs
