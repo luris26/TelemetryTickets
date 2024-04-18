@@ -1,0 +1,20 @@
+name: pull request environment
+
+on:
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  deploy-to-kubernetes:
+    runs-on: self-hosted
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+      - name: deploy kubernetes
+        run: |
+            export PUL_REQUEST_ID={{github.event.pull_request.number}}
+            echo $PULL_REQUEST_ID
+            kubectl create namespace luris-pr-$PULL_REQUEST_ID || true
+
+            kubectl -n luris-pr-$PULL_REQUEST_ID delete configmap blazor-web-postgres-init || true
+            kubectl -n luris-pr-$PULL_REQUEST_ID create configmap blazor-web-postgres-init --from-file=init.sql
