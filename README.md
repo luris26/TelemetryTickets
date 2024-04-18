@@ -3,3 +3,4 @@
 TODO:
 - MauiProgram.cs: Add SyncController with MauiTicketController instance
 - MauiTicketController.cs: Do some logic to notify that there was a duplicate scan
+- 
