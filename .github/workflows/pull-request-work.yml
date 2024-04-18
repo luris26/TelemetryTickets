@@ -14,8 +14,8 @@ jobs:
         run: |
             export PUL_REQUEST_ID={{github.event.pull_request.number}}
             echo $PULL_REQUEST_ID
-            kubectl create namespace luris-pr-$PULL_REQUEST_ID || true
+            kubectl create namespace luris-pr$PULL_REQUEST_ID || true
 
-            kubectl -n luris-pr-$PULL_REQUEST_ID delete configmap blazor-web-postgres-init || true
-            kubectl -n luris-pr-$PULL_REQUEST_ID create configmap blazor-web-postgres-init --from-file=init.sql
+            kubectl -n luris-pr$PULL_REQUEST_ID delete configmap blazor-web-postgres-init || true
+            kubectl -n luris-pr$PULL_REQUEST_ID create configmap blazor-web-postgres-init --from-file=init.sql
 ###################################
