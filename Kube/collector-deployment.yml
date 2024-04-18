@@ -23,8 +23,8 @@ spec:
         
         volumeMounts:
           - name: otel-config-volume
-              mountPath: /etc/otel-collector-config.yml
-              subPath: otel-collector-config.yml
+            mountPath: /etc/otelcol-contrib/config.yaml
+            subPath: otel-collector-config.yml
         # env:
         # - name: db
         #   value: Server=blazor-web-db-service;password=luris-password;user id=luris-user;database=lurisdb_;
