@@ -18,3 +18,4 @@ jobs:
 
             kubectl -n luris-pr-$PULL_REQUEST_ID delete configmap blazor-web-postgres-init || true
             kubectl -n luris-pr-$PULL_REQUEST_ID create configmap blazor-web-postgres-init --from-file=init.sql
+###################################
